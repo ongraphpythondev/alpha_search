@@ -1,0 +1,26 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  
+  web:
+    image: alphasearch99/webapp:v1
+    command:
+      "python manage.py runserver 0.0.0.0:8000"
+    restart: always
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    environment:
+      - .env
+
+    networks:
+      - alpha
+
+
+networks:
+  alpha:
+    name: alpha
+    driver: bridge
